@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{562AC620-21B9-3237-91EE-0C6E64E87C07}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="N:\Development\Dev_Base\hdf5-1.14.0\examples\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule N:/Development/Dev_Base/hdf5-1.14.0/examples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SN:/Development/Dev_Base/hdf5-1.14.0 -BN:/Development/Dev_Base/hdf5-1.14.0/msvc --check-stamp-file N:/Development/Dev_Base/hdf5-1.14.0/msvc/examples/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule N:/Development/Dev_Base/hdf5-1.14.0/examples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SN:/Development/Dev_Base/hdf5-1.14.0 -BN:/Development/Dev_Base/hdf5-1.14.0/msvc --check-stamp-file N:/Development/Dev_Base/hdf5-1.14.0/msvc/examples/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule N:/Development/Dev_Base/hdf5-1.14.0/examples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SN:/Development/Dev_Base/hdf5-1.14.0 -BN:/Development/Dev_Base/hdf5-1.14.0/msvc --check-stamp-file N:/Development/Dev_Base/hdf5-1.14.0/msvc/examples/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule N:/Development/Dev_Base/hdf5-1.14.0/examples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SN:/Development/Dev_Base/hdf5-1.14.0 -BN:/Development/Dev_Base/hdf5-1.14.0/msvc --check-stamp-file N:/Development/Dev_Base/hdf5-1.14.0/msvc/examples/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\ZERO_CHECK.vcxproj">
+      <Project>{7883C086-0F6B-32EC-861A-3023BAB1F68C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_attribute.vcxproj">
+      <Project>{08FECF31-A745-3762-AC87-9951C692A8DD}</Project>
+      <Name>h5_attribute</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_chunk_read.vcxproj">
+      <Project>{1997C7AB-0C5D-3C9D-9090-17F447313DCA}</Project>
+      <Name>h5_chunk_read</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_cmprss.vcxproj">
+      <Project>{E3A6B9FC-AC6C-3F00-B97E-4DA1CD6470CB}</Project>
+      <Name>h5_cmprss</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_compound.vcxproj">
+      <Project>{2F110C4D-54F4-3BCC-B802-A9BBFE42097D}</Project>
+      <Name>h5_compound</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_crtatt.vcxproj">
+      <Project>{F833ABC4-CEF9-3E70-A7B2-C677C0A23B27}</Project>
+      <Name>h5_crtatt</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_crtdat.vcxproj">
+      <Project>{1AABF9E5-C18A-3EC3-B184-045BADC77A28}</Project>
+      <Name>h5_crtdat</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_crtgrp.vcxproj">
+      <Project>{1A23D454-31FE-3839-B9CF-F638AC477FBA}</Project>
+      <Name>h5_crtgrp</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_crtgrpar.vcxproj">
+      <Project>{212ABBA0-2DAC-3350-AA79-82D3E51372E3}</Project>
+      <Name>h5_crtgrpar</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_crtgrpd.vcxproj">
+      <Project>{222484A5-4299-3058-A798-C16B575DF794}</Project>
+      <Name>h5_crtgrpd</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_debug_trace.vcxproj">
+      <Project>{8FCA3216-A1EB-3CB4-8EBE-114BE54CCF66}</Project>
+      <Name>h5_debug_trace</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_drivers.vcxproj">
+      <Project>{B2C2D17C-2985-3F31-988E-FDE93084F288}</Project>
+      <Name>h5_drivers</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_elink_unix2win.vcxproj">
+      <Project>{7FB53C36-00B8-3AE7-AC58-AFB9BBB763DF}</Project>
+      <Name>h5_elink_unix2win</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_extend.vcxproj">
+      <Project>{B303E2B9-9277-3FA0-B182-536B27DE29E7}</Project>
+      <Name>h5_extend</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_extend_write.vcxproj">
+      <Project>{BB915720-9689-3A6D-A378-19BFC29F423B}</Project>
+      <Name>h5_extend_write</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_extlink.vcxproj">
+      <Project>{0365C527-CE35-360D-99BF-FE00A04571BC}</Project>
+      <Name>h5_extlink</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_group.vcxproj">
+      <Project>{7E6ACE8E-ED0A-3645-9007-D6F2E03348D9}</Project>
+      <Name>h5_group</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_mount.vcxproj">
+      <Project>{AACABF4B-84E2-31F5-A357-EEF23ACE6ED7}</Project>
+      <Name>h5_mount</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_rdwt.vcxproj">
+      <Project>{EA6AB9D4-97BE-34FE-AB2D-0B26BE153D69}</Project>
+      <Name>h5_rdwt</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_read.vcxproj">
+      <Project>{0B9283E9-A18E-3BD1-B661-9C2F76C94B6B}</Project>
+      <Name>h5_read</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_ref2reg_deprec.vcxproj">
+      <Project>{05061FBC-FC2B-3C54-99C8-3E69A30F888C}</Project>
+      <Name>h5_ref2reg_deprec</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_ref_compat.vcxproj">
+      <Project>{25928DA1-D561-306C-9AF5-0FFC311F5BAB}</Project>
+      <Name>h5_ref_compat</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_ref_extern.vcxproj">
+      <Project>{34D4F401-4A33-3D11-B962-C52BB619AF46}</Project>
+      <Name>h5_ref_extern</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_reference_deprec.vcxproj">
+      <Project>{A5D9252F-A97D-35B4-8C7F-589B45872536}</Project>
+      <Name>h5_reference_deprec</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_select.vcxproj">
+      <Project>{D132A7FB-DF60-3A08-86E5-AFDBCE555EE7}</Project>
+      <Name>h5_select</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_shared_mesg.vcxproj">
+      <Project>{9B66654E-1E79-312B-AA8C-77452CB6FE7E}</Project>
+      <Name>h5_shared_mesg</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_subset.vcxproj">
+      <Project>{C578FC0C-B9E2-3CD2-A06F-F291C396CB1F}</Project>
+      <Name>h5_subset</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds.vcxproj">
+      <Project>{D8B47DC7-FC83-3903-8064-C666656C00F1}</Project>
+      <Name>h5_vds</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-eiger.vcxproj">
+      <Project>{375D714B-CF9F-32D0-9699-CA067848C9CD}</Project>
+      <Name>h5_vds-eiger</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-exc.vcxproj">
+      <Project>{E8377534-0D54-37D1-9BD0-FB3F4409ABF1}</Project>
+      <Name>h5_vds-exc</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-exclim.vcxproj">
+      <Project>{14306B21-0665-3E10-A31F-F2B783CC7136}</Project>
+      <Name>h5_vds-exclim</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-percival.vcxproj">
+      <Project>{31EC0324-6E78-3C48-B994-029135A3630F}</Project>
+      <Name>h5_vds-percival</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-percival-unlim.vcxproj">
+      <Project>{9EDF0D26-5883-3F23-B3B1-74FAEA4DD247}</Project>
+      <Name>h5_vds-percival-unlim</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-percival-unlim-maxmin.vcxproj">
+      <Project>{9A317673-7208-3E76-8384-36A17D8ED1EC}</Project>
+      <Name>h5_vds-percival-unlim-maxmin</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_vds-simpleIO.vcxproj">
+      <Project>{EC3CD088-8A75-316A-A044-A019FBA2D268}</Project>
+      <Name>h5_vds-simpleIO</Name>
+    </ProjectReference>
+    <ProjectReference Include="N:\Development\Dev_Base\hdf5-1.14.0\msvc\examples\h5_write.vcxproj">
+      <Project>{632E10C3-8343-331C-985C-160BE94BBE0F}</Project>
+      <Name>h5_write</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

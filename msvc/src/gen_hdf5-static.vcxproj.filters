@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\CMakeFiles\4637283bc08b047edf425c6c910629e0\gen_SRCS.stamp1.rule" />
+    <CustomBuild Include="..\CMakeFiles\4637283bc08b047edf425c6c910629e0\gen_SRCS.stamp2.rule" />
+    <CustomBuild Include="..\CMakeFiles\fa70583298697a60b1b010582e32dd6e\gen_hdf5-static.rule" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\CMakeFiles\gen_hdf5-static" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7E156B03-E984-3ABC-9C73-CE27B506BB34}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
