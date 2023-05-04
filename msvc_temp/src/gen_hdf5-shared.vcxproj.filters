@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="..\CMakeFiles\aa82c67250282b3a17a176b03d9f3657\gen_SRCS.stamp1.rule" />
+    <CustomBuild Include="..\CMakeFiles\3e28e19b820a1374aa1c9e9550416746\shared_gen_SRCS.stamp1.rule" />
+    <CustomBuild Include="..\CMakeFiles\aa82c67250282b3a17a176b03d9f3657\gen_SRCS.stamp2.rule" />
+    <CustomBuild Include="..\CMakeFiles\3e28e19b820a1374aa1c9e9550416746\shared_gen_SRCS.stamp2.rule" />
+    <CustomBuild Include="..\CMakeFiles\a13fdea5e4bceaaad5016f460604095a\gen_hdf5-shared.rule" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\CMakeFiles\gen_hdf5-shared" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B9A57800-F2B1-3466-8728-EFAC5C106C5F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
