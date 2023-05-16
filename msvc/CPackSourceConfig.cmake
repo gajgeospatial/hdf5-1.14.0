@@ -12,7 +12,7 @@
 
 set(CPACK_BUILD_SOURCE_DIRS "N:/Development/Dev_Base/hdf5-1.14.0;N:/Development/Dev_Base/hdf5-1.14.0/msvc")
 set(CPACK_CMAKE_GENERATOR "Visual Studio 16 2019")
-set(CPACK_COMPONENTS_ALL "Unspecified;configinstall;hdfdocuments;headers;hlheaders;hllibraries;hltoolsapplications;libraries;toolsapplications;toolslibraries;utilsapplications")
+set(CPACK_COMPONENTS_ALL "Unspecified;configinstall;cppheaders;cpplibraries;hdfdocuments;headers;hlcppheaders;hlcpplibraries;hlheaders;hllibraries;libraries;utilsapplications")
 set(CPACK_COMPONENT_UNSPECIFIED_HIDDEN "TRUE")
 set(CPACK_COMPONENT_UNSPECIFIED_REQUIRED "TRUE")
 set(CPACK_DEFAULT_PACKAGE_DESCRIPTION_FILE "C:/Program Files/CMake/share/cmake-3.20/Templates/CPack.GenericDescription.txt")

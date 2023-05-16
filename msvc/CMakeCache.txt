@@ -43,6 +43,24 @@ CMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH=N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin
 // else will be ignored.
 CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release;MinSizeRel;RelWithDebInfo
 
+//Flags used by the CXX compiler during all build types.
+CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /GR /EHsc
+
+//Flags used by the CXX compiler during DEBUG builds.
+CMAKE_CXX_FLAGS_DEBUG:STRING=/Zi /Ob0 /Od /RTC1
+
+//Flags used by the CXX compiler during MINSIZEREL builds.
+CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/O1 /Ob1 /DNDEBUG
+
+//Flags used by the CXX compiler during RELEASE builds.
+CMAKE_CXX_FLAGS_RELEASE:STRING=/O2 /Ob2 /DNDEBUG
+
+//Flags used by the CXX compiler during RELWITHDEBINFO builds.
+CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/Zi /O2 /Ob1 /DNDEBUG
+
+//Libraries linked by default with all C++ applications.
+CMAKE_CXX_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=/DWIN32 /D_WINDOWS
 
@@ -257,7 +275,7 @@ HDF5_BATCH_H5DETECT:BOOL=OFF
 HDF5_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc
 
 //Build HDF5 C++ Library
-HDF5_BUILD_CPP_LIB:BOOL=OFF
+HDF5_BUILD_CPP_LIB:BOOL=ON
 
 //Build documentation
 HDF5_BUILD_DOC:BOOL=OFF
@@ -284,10 +302,22 @@ HDF5_BUILD_JAVA:BOOL=OFF
 HDF5_BUILD_PARALLEL_TOOLS:BOOL=OFF
 
 //Build HDF5 Tools
-HDF5_BUILD_TOOLS:BOOL=ON
+HDF5_BUILD_TOOLS:BOOL=OFF
 
 //Build HDF5 Utils
 HDF5_BUILD_UTILS:BOOL=ON
+
+//Value Computed by CMake
+HDF5_CPP_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/c++
+
+//Value Computed by CMake
+HDF5_CPP_SOURCE_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/c++
+
+//Value Computed by CMake
+HDF5_CPP_SRC_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/c++/src
+
+//Value Computed by CMake
+HDF5_CPP_SRC_SOURCE_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/c++/src
 
 //Use new-style references with dimension scale APIs
 HDF5_DIMENSION_SCALES_NEW_REF:BOOL=OFF
@@ -381,7 +411,7 @@ HDF5_ENABLE_USING_MEMCHECKER:BOOL=OFF
 HDF5_ENABLE_WARNINGS_AS_ERRORS:BOOL=OFF
 
 //Enable Zlib Filters
-HDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF
+HDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
 
 //Value Computed by CMake
 HDF5_EXAMPLES_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/examples
@@ -397,6 +427,18 @@ HDF5_GENERATE_HEADERS:BOOL=OFF
 
 //Value Computed by CMake
 HDF5_HL_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl
+
+//Value Computed by CMake
+HDF5_HL_CPP_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/c++
+
+//Value Computed by CMake
+HDF5_HL_CPP_SOURCE_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/hl/c++
+
+//Value Computed by CMake
+HDF5_HL_CPP_SRC_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/c++/src
+
+//Value Computed by CMake
+HDF5_HL_CPP_SRC_SOURCE_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/hl/c++/src
 
 //Value Computed by CMake
 HDF5_HL_EXAMPLES_BINARY_DIR:STATIC=N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/examples
@@ -749,13 +791,16 @@ SITE:STRING=glensdev3
 TEST_SHELL_SCRIPTS:BOOL=ON
 
 //Use AEC library as SZip Filter
-USE_LIBAEC:BOOL=OFF
+USE_LIBAEC:BOOL=ON
 
 //Use static AEC library 
 USE_LIBAEC_STATIC:BOOL=OFF
 
 //Path to a program.
 WIX_EXECUTABLE:FILEPATH=WIX_EXECUTABLE-NOTFOUND
+
+//The directory containing a CMake configuration file for ZLIB.
+ZLIB_DIR:PATH=ZLIB_DIR-NOTFOUND
 
 
 ########################
@@ -780,6 +825,18 @@ CMAKE_COMMAND:INTERNAL=C:/Program Files/CMake/bin/cmake.exe
 CMAKE_CPACK_COMMAND:INTERNAL=C:/Program Files/CMake/bin/cpack.exe
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=C:/Program Files/CMake/bin/ctest.exe
+//ADVANCED property for variable: CMAKE_CXX_FLAGS
+CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
+CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_MINSIZEREL
+CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELEASE
+CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
+CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_STANDARD_LIBRARIES
+CMAKE_CXX_STANDARD_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS
 CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
@@ -832,7 +889,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=23
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -1228,7 +1285,7 @@ HDF5_ENABLE_TRACE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: HDF5_EXTERNAL_LIB_PREFIX
 HDF5_EXTERNAL_LIB_PREFIX-ADVANCED:INTERNAL=1
 //Used to pass variables between directories
-HDF5_LIBRARIES_TO_EXPORT:INTERNAL=hdf5-static;hdf5-shared;hdf5_tools-static;hdf5_tools-shared;hdf5_hl-static;hdf5_hl-shared
+HDF5_LIBRARIES_TO_EXPORT:INTERNAL=hdf5-static;hdf5-shared;hdf5_hl-static;hdf5_hl-shared;hdf5_cpp-static;hdf5_cpp-shared;hdf5_hl_cpp-static;hdf5_hl_cpp-shared
 //ADVANCED property for variable: HDF5_LIB_INFIX
 HDF5_LIB_INFIX-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: HDF5_NO_PACKAGES
@@ -1258,7 +1315,7 @@ HDF5_TEST_VFD-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: HDF5_USE_FOLDERS
 HDF5_USE_FOLDERS-ADVANCED:INTERNAL=1
 //Used to pass variables between directories
-HDF5_UTILS_TO_EXPORT:INTERNAL=mirror_server;mirror_server_stop;h5diff;h5diff-shared;h5ls;h5ls-shared;h5debug;h5repart;h5mkgrp;h5clear;h5delete;h5debug-shared;h5repart-shared;h5mkgrp-shared;h5clear-shared;h5delete-shared;h5import;h5import-shared;h5repack;h5repack-shared;h5jam;h5unjam;h5jam-shared;h5unjam-shared;h5copy;h5copy-shared;h5stat;h5stat-shared;h5dump;h5dump-shared;h5format_convert;h5format_convert-shared;h5perf_serial
+HDF5_UTILS_TO_EXPORT:INTERNAL=mirror_server;mirror_server_stop
 //ADVANCED property for variable: HDF5_WANT_DATA_ACCURACY
 HDF5_WANT_DATA_ACCURACY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: HDF5_WANT_DCONV_EXCEPTION

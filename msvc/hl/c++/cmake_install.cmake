@@ -34,6 +34,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("N:/Development/Dev_Base/hdf5-1.14.0/msvc_temp/hl/c++/src/cmake_install.cmake")
+  include("N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/c++/src/cmake_install.cmake")
 endif()
 

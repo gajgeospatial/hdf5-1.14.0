@@ -13,7 +13,7 @@
  * If you do not have access to either file, you may request a copy from     *
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Created:		May  4, 2023
+ * Created:		May  6, 2023
  *			
  *
  * Purpose:		This machine-generated source code contains
@@ -39,7 +39,7 @@ char H5libhdf5_settings[]=
 	"General Information:\n"
 	"-------------------\n"
 	"                   HDF5 Version: 1.14.0\n"
-	"                  Configured on: 2023-05-04\n"
+	"                  Configured on: 2023-05-05\n"
 	"                  Configured by: Visual Studio 16 2019\n"
 	"                    Host system: Windows-10.0.19044\n"
 	"              Uname information: Windows\n"
@@ -87,10 +87,10 @@ char H5libhdf5_settings[]=
 	"         Static Fortran Library: YES\n"
 	"               Module Directory: N:/Development/Dev_Base/hdf5-1.14.0/msvc/mod\n"
 	"\n"
-	"                            C++: OFF\n"
-	"                   C++ Compiler:  \n"
-	"                      C++ Flags: \n"
-	"                   H5 C++ Flags: \n"
+	"                            C++: ON\n"
+	"                   C++ Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe 19.29.30138.0\n"
+	"                      C++ Flags:  /DWIN32 /D_WINDOWS /GR /EHsc /EHsc -wd5105\n"
+	"                   H5 C++ Flags: /W3;/wd4100;/wd4706;/wd4127\n"
 	"                   AM C++ Flags: \n"
 	"             Shared C++ Library: YES\n"
 	"             Static C++ Library: YES\n"
@@ -106,12 +106,12 @@ char H5libhdf5_settings[]=
 	"                High-level library: ON\n"
 	"Dimension scales w/ new references: \n"
 	"                  Build HDF5 Tests: OFF\n"
-	"                  Build HDF5 Tools: ON\n"
+	"                  Build HDF5 Tools: OFF\n"
 	"                   Build GIF Tools: OFF\n"
 	"                      Threadsafety: OFF\n"
 	"               Default API mapping: v114\n"
 	"    With deprecated public symbols: ON\n"
-	"            I/O filters (external): \n"
+	"            I/O filters (external):  DEFLATE\n"
 	"                        Direct VFD: \n"
 	"                        Mirror VFD: \n"
 	"                     Subfiling VFD: \n"

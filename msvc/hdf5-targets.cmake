@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget hdf5-static hdf5-shared hdf5_tools-static hdf5_tools-shared hdf5_hl-static hdf5_hl-shared mirror_server mirror_server_stop h5diff h5diff-shared h5ls h5ls-shared h5debug h5repart h5mkgrp h5clear h5delete h5debug-shared h5repart-shared h5mkgrp-shared h5clear-shared h5delete-shared h5import h5import-shared h5repack h5repack-shared h5jam h5unjam h5jam-shared h5unjam-shared h5copy h5copy-shared h5stat h5stat-shared h5dump h5dump-shared h5format_convert h5format_convert-shared h5perf_serial)
+foreach(_expectedTarget hdf5-static hdf5-shared hdf5_hl-static hdf5_hl-shared hdf5_cpp-static hdf5_cpp-shared hdf5_hl_cpp-static hdf5_hl_cpp-shared mirror_server mirror_server_stop)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -46,7 +46,7 @@ add_library(hdf5-static STATIC IMPORTED)
 
 set_target_properties(hdf5-static PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/src;N:/Development/Dev_Base/hdf5-1.14.0/msvc/src;N:/Development/Dev_Base/hdf5-1.14.0/src"
-  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:shlwapi>;\$<\$<NOT:\$<PLATFORM_ID:Windows>>:>;\$<\$<BOOL:OFF>:MPI::MPI_C>"
+  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:shlwapi>;N:/Development/Dev_Base/zlib-1.2.11/vc143/x64/vs2022_Release/zlib.lib;\$<\$<NOT:\$<PLATFORM_ID:Windows>>:>;\$<\$<BOOL:OFF>:MPI::MPI_C>"
 )
 
 # Create imported target hdf5-shared
@@ -56,23 +56,6 @@ set_target_properties(hdf5-shared PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
   INTERFACE_INCLUDE_DIRECTORIES "\$<\$<BOOL:OFF>:HDFS_INCLUDE_DIR-NOTFOUND>;N:/Development/Dev_Base/hdf5-1.14.0/msvc/src;N:/Development/Dev_Base/hdf5-1.14.0/msvc/src;N:/Development/Dev_Base/hdf5-1.14.0/src"
   INTERFACE_LINK_LIBRARIES "\$<\$<NOT:\$<PLATFORM_ID:Windows>>:>;\$<\$<BOOL:OFF>:MPI::MPI_C>"
-)
-
-# Create imported target hdf5_tools-static
-add_library(hdf5_tools-static STATIC IMPORTED)
-
-set_target_properties(hdf5_tools-static PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/tools/lib;N:/Development/Dev_Base/hdf5-1.14.0/tools/lib"
-  INTERFACE_LINK_LIBRARIES "hdf5-static;\$<LINK_ONLY:\$<\$<BOOL:OFF>:MPI::MPI_C>>"
-)
-
-# Create imported target hdf5_tools-shared
-add_library(hdf5_tools-shared SHARED IMPORTED)
-
-set_target_properties(hdf5_tools-shared PROPERTIES
-  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
-  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/tools/lib;N:/Development/Dev_Base/hdf5-1.14.0/tools/lib"
-  INTERFACE_LINK_LIBRARIES "hdf5-shared"
 )
 
 # Create imported target hdf5_hl-static
@@ -92,104 +75,45 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   INTERFACE_LINK_LIBRARIES "hdf5-shared"
 )
 
+# Create imported target hdf5_cpp-static
+add_library(hdf5_cpp-static STATIC IMPORTED)
+
+set_target_properties(hdf5_cpp-static PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/c++/src;N:/Development/Dev_Base/hdf5-1.14.0/c++/src"
+  INTERFACE_LINK_LIBRARIES "hdf5-static"
+)
+
+# Create imported target hdf5_cpp-shared
+add_library(hdf5_cpp-shared SHARED IMPORTED)
+
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
+  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/c++/src;N:/Development/Dev_Base/hdf5-1.14.0/c++/src"
+  INTERFACE_LINK_LIBRARIES "hdf5-shared"
+)
+
+# Create imported target hdf5_hl_cpp-static
+add_library(hdf5_hl_cpp-static STATIC IMPORTED)
+
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/c++/src;N:/Development/Dev_Base/hdf5-1.14.0/hl/c++/src"
+  INTERFACE_LINK_LIBRARIES "hdf5_hl-static;hdf5-static"
+)
+
+# Create imported target hdf5_hl_cpp-shared
+add_library(hdf5_hl_cpp-shared SHARED IMPORTED)
+
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
+  INTERFACE_INCLUDE_DIRECTORIES "N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/c++/src;N:/Development/Dev_Base/hdf5-1.14.0/hl/c++/src"
+  INTERFACE_LINK_LIBRARIES "hdf5_hl-shared;hdf5-shared"
+)
+
 # Create imported target mirror_server
 add_executable(mirror_server IMPORTED)
 
 # Create imported target mirror_server_stop
 add_executable(mirror_server_stop IMPORTED)
-
-# Create imported target h5diff
-add_executable(h5diff IMPORTED)
-
-# Create imported target h5diff-shared
-add_executable(h5diff-shared IMPORTED)
-
-# Create imported target h5ls
-add_executable(h5ls IMPORTED)
-
-# Create imported target h5ls-shared
-add_executable(h5ls-shared IMPORTED)
-
-# Create imported target h5debug
-add_executable(h5debug IMPORTED)
-
-# Create imported target h5repart
-add_executable(h5repart IMPORTED)
-
-# Create imported target h5mkgrp
-add_executable(h5mkgrp IMPORTED)
-
-# Create imported target h5clear
-add_executable(h5clear IMPORTED)
-
-# Create imported target h5delete
-add_executable(h5delete IMPORTED)
-
-# Create imported target h5debug-shared
-add_executable(h5debug-shared IMPORTED)
-
-# Create imported target h5repart-shared
-add_executable(h5repart-shared IMPORTED)
-
-# Create imported target h5mkgrp-shared
-add_executable(h5mkgrp-shared IMPORTED)
-
-# Create imported target h5clear-shared
-add_executable(h5clear-shared IMPORTED)
-
-# Create imported target h5delete-shared
-add_executable(h5delete-shared IMPORTED)
-
-# Create imported target h5import
-add_executable(h5import IMPORTED)
-
-# Create imported target h5import-shared
-add_executable(h5import-shared IMPORTED)
-
-# Create imported target h5repack
-add_executable(h5repack IMPORTED)
-
-# Create imported target h5repack-shared
-add_executable(h5repack-shared IMPORTED)
-
-# Create imported target h5jam
-add_executable(h5jam IMPORTED)
-
-# Create imported target h5unjam
-add_executable(h5unjam IMPORTED)
-
-# Create imported target h5jam-shared
-add_executable(h5jam-shared IMPORTED)
-
-# Create imported target h5unjam-shared
-add_executable(h5unjam-shared IMPORTED)
-
-# Create imported target h5copy
-add_executable(h5copy IMPORTED)
-
-# Create imported target h5copy-shared
-add_executable(h5copy-shared IMPORTED)
-
-# Create imported target h5stat
-add_executable(h5stat IMPORTED)
-
-# Create imported target h5stat-shared
-add_executable(h5stat-shared IMPORTED)
-
-# Create imported target h5dump
-add_executable(h5dump IMPORTED)
-
-# Create imported target h5dump-shared
-add_executable(h5dump-shared IMPORTED)
-
-# Create imported target h5format_convert
-add_executable(h5format_convert IMPORTED)
-
-# Create imported target h5format_convert-shared
-add_executable(h5format_convert-shared IMPORTED)
-
-# Create imported target h5perf_serial
-add_executable(h5perf_serial IMPORTED)
 
 # Import target "hdf5-static" for configuration "Debug"
 set_property(TARGET hdf5-static APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -203,20 +127,6 @@ set_property(TARGET hdf5-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(hdf5-shared PROPERTIES
   IMPORTED_IMPLIB_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_D.lib"
   IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_D.dll"
-  )
-
-# Import target "hdf5_tools-static" for configuration "Debug"
-set_property(TARGET hdf5_tools-static APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(hdf5_tools-static PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "C"
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/libhdf5_tools_D.lib"
-  )
-
-# Import target "hdf5_tools-shared" for configuration "Debug"
-set_property(TARGET hdf5_tools-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(hdf5_tools-shared PROPERTIES
-  IMPORTED_IMPLIB_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_tools_D.lib"
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_tools_D.dll"
   )
 
 # Import target "hdf5_hl-static" for configuration "Debug"
@@ -233,6 +143,34 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_hl_D.dll"
   )
 
+# Import target "hdf5_cpp-static" for configuration "Debug"
+set_property(TARGET hdf5_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(hdf5_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/libhdf5_cpp_D.lib"
+  )
+
+# Import target "hdf5_cpp-shared" for configuration "Debug"
+set_property(TARGET hdf5_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_cpp_D.lib"
+  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_cpp_D.dll"
+  )
+
+# Import target "hdf5_hl_cpp-static" for configuration "Debug"
+set_property(TARGET hdf5_hl_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/libhdf5_hl_cpp_D.lib"
+  )
+
+# Import target "hdf5_hl_cpp-shared" for configuration "Debug"
+set_property(TARGET hdf5_hl_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_hl_cpp_D.lib"
+  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/hdf5_hl_cpp_D.dll"
+  )
+
 # Import target "mirror_server" for configuration "Debug"
 set_property(TARGET mirror_server APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mirror_server PROPERTIES
@@ -243,192 +181,6 @@ set_target_properties(mirror_server PROPERTIES
 set_property(TARGET mirror_server_stop APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mirror_server_stop PROPERTIES
   IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/mirror_server_stop.exe"
-  )
-
-# Import target "h5diff" for configuration "Debug"
-set_property(TARGET h5diff APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5diff PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5diff.exe"
-  )
-
-# Import target "h5diff-shared" for configuration "Debug"
-set_property(TARGET h5diff-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5diff-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5diff-shared.exe"
-  )
-
-# Import target "h5ls" for configuration "Debug"
-set_property(TARGET h5ls APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5ls PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5ls.exe"
-  )
-
-# Import target "h5ls-shared" for configuration "Debug"
-set_property(TARGET h5ls-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5ls-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5ls-shared.exe"
-  )
-
-# Import target "h5debug" for configuration "Debug"
-set_property(TARGET h5debug APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5debug PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5debug.exe"
-  )
-
-# Import target "h5repart" for configuration "Debug"
-set_property(TARGET h5repart APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5repart PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5repart.exe"
-  )
-
-# Import target "h5mkgrp" for configuration "Debug"
-set_property(TARGET h5mkgrp APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5mkgrp PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5mkgrp.exe"
-  )
-
-# Import target "h5clear" for configuration "Debug"
-set_property(TARGET h5clear APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5clear PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5clear.exe"
-  )
-
-# Import target "h5delete" for configuration "Debug"
-set_property(TARGET h5delete APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5delete PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5delete.exe"
-  )
-
-# Import target "h5debug-shared" for configuration "Debug"
-set_property(TARGET h5debug-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5debug-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5debug-shared.exe"
-  )
-
-# Import target "h5repart-shared" for configuration "Debug"
-set_property(TARGET h5repart-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5repart-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5repart-shared.exe"
-  )
-
-# Import target "h5mkgrp-shared" for configuration "Debug"
-set_property(TARGET h5mkgrp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5mkgrp-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5mkgrp-shared.exe"
-  )
-
-# Import target "h5clear-shared" for configuration "Debug"
-set_property(TARGET h5clear-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5clear-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5clear-shared.exe"
-  )
-
-# Import target "h5delete-shared" for configuration "Debug"
-set_property(TARGET h5delete-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5delete-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5delete-shared.exe"
-  )
-
-# Import target "h5import" for configuration "Debug"
-set_property(TARGET h5import APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5import PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5import.exe"
-  )
-
-# Import target "h5import-shared" for configuration "Debug"
-set_property(TARGET h5import-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5import-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5import-shared.exe"
-  )
-
-# Import target "h5repack" for configuration "Debug"
-set_property(TARGET h5repack APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5repack PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5repack.exe"
-  )
-
-# Import target "h5repack-shared" for configuration "Debug"
-set_property(TARGET h5repack-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5repack-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5repack-shared.exe"
-  )
-
-# Import target "h5jam" for configuration "Debug"
-set_property(TARGET h5jam APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5jam PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5jam.exe"
-  )
-
-# Import target "h5unjam" for configuration "Debug"
-set_property(TARGET h5unjam APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5unjam PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5unjam.exe"
-  )
-
-# Import target "h5jam-shared" for configuration "Debug"
-set_property(TARGET h5jam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5jam-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5jam-shared.exe"
-  )
-
-# Import target "h5unjam-shared" for configuration "Debug"
-set_property(TARGET h5unjam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5unjam-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5unjam-shared.exe"
-  )
-
-# Import target "h5copy" for configuration "Debug"
-set_property(TARGET h5copy APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5copy PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5copy.exe"
-  )
-
-# Import target "h5copy-shared" for configuration "Debug"
-set_property(TARGET h5copy-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5copy-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5copy-shared.exe"
-  )
-
-# Import target "h5stat" for configuration "Debug"
-set_property(TARGET h5stat APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5stat PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5stat.exe"
-  )
-
-# Import target "h5stat-shared" for configuration "Debug"
-set_property(TARGET h5stat-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5stat-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5stat-shared.exe"
-  )
-
-# Import target "h5dump" for configuration "Debug"
-set_property(TARGET h5dump APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5dump PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5dump.exe"
-  )
-
-# Import target "h5dump-shared" for configuration "Debug"
-set_property(TARGET h5dump-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5dump-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5dump-shared.exe"
-  )
-
-# Import target "h5format_convert" for configuration "Debug"
-set_property(TARGET h5format_convert APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5format_convert PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5format_convert.exe"
-  )
-
-# Import target "h5format_convert-shared" for configuration "Debug"
-set_property(TARGET h5format_convert-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5format_convert-shared PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5format_convert-shared.exe"
-  )
-
-# Import target "h5perf_serial" for configuration "Debug"
-set_property(TARGET h5perf_serial APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(h5perf_serial PROPERTIES
-  IMPORTED_LOCATION_DEBUG "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Debug/h5perf_serial.exe"
   )
 
 # Import target "hdf5-static" for configuration "Release"
@@ -445,20 +197,6 @@ set_target_properties(hdf5-shared PROPERTIES
   IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5.dll"
   )
 
-# Import target "hdf5_tools-static" for configuration "Release"
-set_property(TARGET hdf5_tools-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(hdf5_tools-static PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/libhdf5_tools.lib"
-  )
-
-# Import target "hdf5_tools-shared" for configuration "Release"
-set_property(TARGET hdf5_tools-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(hdf5_tools-shared PROPERTIES
-  IMPORTED_IMPLIB_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_tools.lib"
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_tools.dll"
-  )
-
 # Import target "hdf5_hl-static" for configuration "Release"
 set_property(TARGET hdf5_hl-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(hdf5_hl-static PROPERTIES
@@ -473,6 +211,34 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_hl.dll"
   )
 
+# Import target "hdf5_cpp-static" for configuration "Release"
+set_property(TARGET hdf5_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(hdf5_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/libhdf5_cpp.lib"
+  )
+
+# Import target "hdf5_cpp-shared" for configuration "Release"
+set_property(TARGET hdf5_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_cpp.lib"
+  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_cpp.dll"
+  )
+
+# Import target "hdf5_hl_cpp-static" for configuration "Release"
+set_property(TARGET hdf5_hl_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/libhdf5_hl_cpp.lib"
+  )
+
+# Import target "hdf5_hl_cpp-shared" for configuration "Release"
+set_property(TARGET hdf5_hl_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_hl_cpp.lib"
+  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/hdf5_hl_cpp.dll"
+  )
+
 # Import target "mirror_server" for configuration "Release"
 set_property(TARGET mirror_server APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(mirror_server PROPERTIES
@@ -483,192 +249,6 @@ set_target_properties(mirror_server PROPERTIES
 set_property(TARGET mirror_server_stop APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(mirror_server_stop PROPERTIES
   IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/mirror_server_stop.exe"
-  )
-
-# Import target "h5diff" for configuration "Release"
-set_property(TARGET h5diff APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5diff PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5diff.exe"
-  )
-
-# Import target "h5diff-shared" for configuration "Release"
-set_property(TARGET h5diff-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5diff-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5diff-shared.exe"
-  )
-
-# Import target "h5ls" for configuration "Release"
-set_property(TARGET h5ls APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5ls PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5ls.exe"
-  )
-
-# Import target "h5ls-shared" for configuration "Release"
-set_property(TARGET h5ls-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5ls-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5ls-shared.exe"
-  )
-
-# Import target "h5debug" for configuration "Release"
-set_property(TARGET h5debug APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5debug PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5debug.exe"
-  )
-
-# Import target "h5repart" for configuration "Release"
-set_property(TARGET h5repart APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5repart PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5repart.exe"
-  )
-
-# Import target "h5mkgrp" for configuration "Release"
-set_property(TARGET h5mkgrp APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5mkgrp PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5mkgrp.exe"
-  )
-
-# Import target "h5clear" for configuration "Release"
-set_property(TARGET h5clear APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5clear PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5clear.exe"
-  )
-
-# Import target "h5delete" for configuration "Release"
-set_property(TARGET h5delete APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5delete PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5delete.exe"
-  )
-
-# Import target "h5debug-shared" for configuration "Release"
-set_property(TARGET h5debug-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5debug-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5debug-shared.exe"
-  )
-
-# Import target "h5repart-shared" for configuration "Release"
-set_property(TARGET h5repart-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5repart-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5repart-shared.exe"
-  )
-
-# Import target "h5mkgrp-shared" for configuration "Release"
-set_property(TARGET h5mkgrp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5mkgrp-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5mkgrp-shared.exe"
-  )
-
-# Import target "h5clear-shared" for configuration "Release"
-set_property(TARGET h5clear-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5clear-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5clear-shared.exe"
-  )
-
-# Import target "h5delete-shared" for configuration "Release"
-set_property(TARGET h5delete-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5delete-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5delete-shared.exe"
-  )
-
-# Import target "h5import" for configuration "Release"
-set_property(TARGET h5import APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5import PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5import.exe"
-  )
-
-# Import target "h5import-shared" for configuration "Release"
-set_property(TARGET h5import-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5import-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5import-shared.exe"
-  )
-
-# Import target "h5repack" for configuration "Release"
-set_property(TARGET h5repack APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5repack PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5repack.exe"
-  )
-
-# Import target "h5repack-shared" for configuration "Release"
-set_property(TARGET h5repack-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5repack-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5repack-shared.exe"
-  )
-
-# Import target "h5jam" for configuration "Release"
-set_property(TARGET h5jam APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5jam PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5jam.exe"
-  )
-
-# Import target "h5unjam" for configuration "Release"
-set_property(TARGET h5unjam APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5unjam PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5unjam.exe"
-  )
-
-# Import target "h5jam-shared" for configuration "Release"
-set_property(TARGET h5jam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5jam-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5jam-shared.exe"
-  )
-
-# Import target "h5unjam-shared" for configuration "Release"
-set_property(TARGET h5unjam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5unjam-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5unjam-shared.exe"
-  )
-
-# Import target "h5copy" for configuration "Release"
-set_property(TARGET h5copy APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5copy PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5copy.exe"
-  )
-
-# Import target "h5copy-shared" for configuration "Release"
-set_property(TARGET h5copy-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5copy-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5copy-shared.exe"
-  )
-
-# Import target "h5stat" for configuration "Release"
-set_property(TARGET h5stat APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5stat PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5stat.exe"
-  )
-
-# Import target "h5stat-shared" for configuration "Release"
-set_property(TARGET h5stat-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5stat-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5stat-shared.exe"
-  )
-
-# Import target "h5dump" for configuration "Release"
-set_property(TARGET h5dump APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5dump PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5dump.exe"
-  )
-
-# Import target "h5dump-shared" for configuration "Release"
-set_property(TARGET h5dump-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5dump-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5dump-shared.exe"
-  )
-
-# Import target "h5format_convert" for configuration "Release"
-set_property(TARGET h5format_convert APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5format_convert PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5format_convert.exe"
-  )
-
-# Import target "h5format_convert-shared" for configuration "Release"
-set_property(TARGET h5format_convert-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5format_convert-shared PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5format_convert-shared.exe"
-  )
-
-# Import target "h5perf_serial" for configuration "Release"
-set_property(TARGET h5perf_serial APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(h5perf_serial PROPERTIES
-  IMPORTED_LOCATION_RELEASE "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/Release/h5perf_serial.exe"
   )
 
 # Import target "hdf5-static" for configuration "MinSizeRel"
@@ -685,20 +265,6 @@ set_target_properties(hdf5-shared PROPERTIES
   IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5.dll"
   )
 
-# Import target "hdf5_tools-static" for configuration "MinSizeRel"
-set_property(TARGET hdf5_tools-static APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(hdf5_tools-static PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "C"
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/libhdf5_tools.lib"
-  )
-
-# Import target "hdf5_tools-shared" for configuration "MinSizeRel"
-set_property(TARGET hdf5_tools-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(hdf5_tools-shared PROPERTIES
-  IMPORTED_IMPLIB_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_tools.lib"
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_tools.dll"
-  )
-
 # Import target "hdf5_hl-static" for configuration "MinSizeRel"
 set_property(TARGET hdf5_hl-static APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(hdf5_hl-static PROPERTIES
@@ -713,6 +279,34 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_hl.dll"
   )
 
+# Import target "hdf5_cpp-static" for configuration "MinSizeRel"
+set_property(TARGET hdf5_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
+set_target_properties(hdf5_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "CXX"
+  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/libhdf5_cpp.lib"
+  )
+
+# Import target "hdf5_cpp-shared" for configuration "MinSizeRel"
+set_property(TARGET hdf5_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_cpp.lib"
+  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_cpp.dll"
+  )
+
+# Import target "hdf5_hl_cpp-static" for configuration "MinSizeRel"
+set_property(TARGET hdf5_hl_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "CXX"
+  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/libhdf5_hl_cpp.lib"
+  )
+
+# Import target "hdf5_hl_cpp-shared" for configuration "MinSizeRel"
+set_property(TARGET hdf5_hl_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_hl_cpp.lib"
+  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/hdf5_hl_cpp.dll"
+  )
+
 # Import target "mirror_server" for configuration "MinSizeRel"
 set_property(TARGET mirror_server APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(mirror_server PROPERTIES
@@ -723,192 +317,6 @@ set_target_properties(mirror_server PROPERTIES
 set_property(TARGET mirror_server_stop APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(mirror_server_stop PROPERTIES
   IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/mirror_server_stop.exe"
-  )
-
-# Import target "h5diff" for configuration "MinSizeRel"
-set_property(TARGET h5diff APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5diff PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5diff.exe"
-  )
-
-# Import target "h5diff-shared" for configuration "MinSizeRel"
-set_property(TARGET h5diff-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5diff-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5diff-shared.exe"
-  )
-
-# Import target "h5ls" for configuration "MinSizeRel"
-set_property(TARGET h5ls APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5ls PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5ls.exe"
-  )
-
-# Import target "h5ls-shared" for configuration "MinSizeRel"
-set_property(TARGET h5ls-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5ls-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5ls-shared.exe"
-  )
-
-# Import target "h5debug" for configuration "MinSizeRel"
-set_property(TARGET h5debug APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5debug PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5debug.exe"
-  )
-
-# Import target "h5repart" for configuration "MinSizeRel"
-set_property(TARGET h5repart APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5repart PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5repart.exe"
-  )
-
-# Import target "h5mkgrp" for configuration "MinSizeRel"
-set_property(TARGET h5mkgrp APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5mkgrp PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5mkgrp.exe"
-  )
-
-# Import target "h5clear" for configuration "MinSizeRel"
-set_property(TARGET h5clear APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5clear PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5clear.exe"
-  )
-
-# Import target "h5delete" for configuration "MinSizeRel"
-set_property(TARGET h5delete APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5delete PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5delete.exe"
-  )
-
-# Import target "h5debug-shared" for configuration "MinSizeRel"
-set_property(TARGET h5debug-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5debug-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5debug-shared.exe"
-  )
-
-# Import target "h5repart-shared" for configuration "MinSizeRel"
-set_property(TARGET h5repart-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5repart-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5repart-shared.exe"
-  )
-
-# Import target "h5mkgrp-shared" for configuration "MinSizeRel"
-set_property(TARGET h5mkgrp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5mkgrp-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5mkgrp-shared.exe"
-  )
-
-# Import target "h5clear-shared" for configuration "MinSizeRel"
-set_property(TARGET h5clear-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5clear-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5clear-shared.exe"
-  )
-
-# Import target "h5delete-shared" for configuration "MinSizeRel"
-set_property(TARGET h5delete-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5delete-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5delete-shared.exe"
-  )
-
-# Import target "h5import" for configuration "MinSizeRel"
-set_property(TARGET h5import APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5import PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5import.exe"
-  )
-
-# Import target "h5import-shared" for configuration "MinSizeRel"
-set_property(TARGET h5import-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5import-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5import-shared.exe"
-  )
-
-# Import target "h5repack" for configuration "MinSizeRel"
-set_property(TARGET h5repack APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5repack PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5repack.exe"
-  )
-
-# Import target "h5repack-shared" for configuration "MinSizeRel"
-set_property(TARGET h5repack-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5repack-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5repack-shared.exe"
-  )
-
-# Import target "h5jam" for configuration "MinSizeRel"
-set_property(TARGET h5jam APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5jam PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5jam.exe"
-  )
-
-# Import target "h5unjam" for configuration "MinSizeRel"
-set_property(TARGET h5unjam APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5unjam PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5unjam.exe"
-  )
-
-# Import target "h5jam-shared" for configuration "MinSizeRel"
-set_property(TARGET h5jam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5jam-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5jam-shared.exe"
-  )
-
-# Import target "h5unjam-shared" for configuration "MinSizeRel"
-set_property(TARGET h5unjam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5unjam-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5unjam-shared.exe"
-  )
-
-# Import target "h5copy" for configuration "MinSizeRel"
-set_property(TARGET h5copy APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5copy PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5copy.exe"
-  )
-
-# Import target "h5copy-shared" for configuration "MinSizeRel"
-set_property(TARGET h5copy-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5copy-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5copy-shared.exe"
-  )
-
-# Import target "h5stat" for configuration "MinSizeRel"
-set_property(TARGET h5stat APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5stat PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5stat.exe"
-  )
-
-# Import target "h5stat-shared" for configuration "MinSizeRel"
-set_property(TARGET h5stat-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5stat-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5stat-shared.exe"
-  )
-
-# Import target "h5dump" for configuration "MinSizeRel"
-set_property(TARGET h5dump APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5dump PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5dump.exe"
-  )
-
-# Import target "h5dump-shared" for configuration "MinSizeRel"
-set_property(TARGET h5dump-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5dump-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5dump-shared.exe"
-  )
-
-# Import target "h5format_convert" for configuration "MinSizeRel"
-set_property(TARGET h5format_convert APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5format_convert PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5format_convert.exe"
-  )
-
-# Import target "h5format_convert-shared" for configuration "MinSizeRel"
-set_property(TARGET h5format_convert-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5format_convert-shared PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5format_convert-shared.exe"
-  )
-
-# Import target "h5perf_serial" for configuration "MinSizeRel"
-set_property(TARGET h5perf_serial APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
-set_target_properties(h5perf_serial PROPERTIES
-  IMPORTED_LOCATION_MINSIZEREL "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/MinSizeRel/h5perf_serial.exe"
   )
 
 # Import target "hdf5-static" for configuration "RelWithDebInfo"
@@ -925,20 +333,6 @@ set_target_properties(hdf5-shared PROPERTIES
   IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5.dll"
   )
 
-# Import target "hdf5_tools-static" for configuration "RelWithDebInfo"
-set_property(TARGET hdf5_tools-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(hdf5_tools-static PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "C"
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/libhdf5_tools.lib"
-  )
-
-# Import target "hdf5_tools-shared" for configuration "RelWithDebInfo"
-set_property(TARGET hdf5_tools-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(hdf5_tools-shared PROPERTIES
-  IMPORTED_IMPLIB_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_tools.lib"
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_tools.dll"
-  )
-
 # Import target "hdf5_hl-static" for configuration "RelWithDebInfo"
 set_property(TARGET hdf5_hl-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(hdf5_hl-static PROPERTIES
@@ -953,6 +347,34 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_hl.dll"
   )
 
+# Import target "hdf5_cpp-static" for configuration "RelWithDebInfo"
+set_property(TARGET hdf5_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
+set_target_properties(hdf5_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
+  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/libhdf5_cpp.lib"
+  )
+
+# Import target "hdf5_cpp-shared" for configuration "RelWithDebInfo"
+set_property(TARGET hdf5_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_cpp.lib"
+  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_cpp.dll"
+  )
+
+# Import target "hdf5_hl_cpp-static" for configuration "RelWithDebInfo"
+set_property(TARGET hdf5_hl_cpp-static APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
+  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/libhdf5_hl_cpp.lib"
+  )
+
+# Import target "hdf5_hl_cpp-shared" for configuration "RelWithDebInfo"
+set_property(TARGET hdf5_hl_cpp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  IMPORTED_IMPLIB_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_hl_cpp.lib"
+  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/hdf5_hl_cpp.dll"
+  )
+
 # Import target "mirror_server" for configuration "RelWithDebInfo"
 set_property(TARGET mirror_server APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(mirror_server PROPERTIES
@@ -963,192 +385,6 @@ set_target_properties(mirror_server PROPERTIES
 set_property(TARGET mirror_server_stop APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(mirror_server_stop PROPERTIES
   IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/mirror_server_stop.exe"
-  )
-
-# Import target "h5diff" for configuration "RelWithDebInfo"
-set_property(TARGET h5diff APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5diff PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5diff.exe"
-  )
-
-# Import target "h5diff-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5diff-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5diff-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5diff-shared.exe"
-  )
-
-# Import target "h5ls" for configuration "RelWithDebInfo"
-set_property(TARGET h5ls APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5ls PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5ls.exe"
-  )
-
-# Import target "h5ls-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5ls-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5ls-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5ls-shared.exe"
-  )
-
-# Import target "h5debug" for configuration "RelWithDebInfo"
-set_property(TARGET h5debug APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5debug PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5debug.exe"
-  )
-
-# Import target "h5repart" for configuration "RelWithDebInfo"
-set_property(TARGET h5repart APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5repart PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5repart.exe"
-  )
-
-# Import target "h5mkgrp" for configuration "RelWithDebInfo"
-set_property(TARGET h5mkgrp APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5mkgrp PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5mkgrp.exe"
-  )
-
-# Import target "h5clear" for configuration "RelWithDebInfo"
-set_property(TARGET h5clear APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5clear PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5clear.exe"
-  )
-
-# Import target "h5delete" for configuration "RelWithDebInfo"
-set_property(TARGET h5delete APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5delete PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5delete.exe"
-  )
-
-# Import target "h5debug-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5debug-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5debug-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5debug-shared.exe"
-  )
-
-# Import target "h5repart-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5repart-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5repart-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5repart-shared.exe"
-  )
-
-# Import target "h5mkgrp-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5mkgrp-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5mkgrp-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5mkgrp-shared.exe"
-  )
-
-# Import target "h5clear-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5clear-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5clear-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5clear-shared.exe"
-  )
-
-# Import target "h5delete-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5delete-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5delete-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5delete-shared.exe"
-  )
-
-# Import target "h5import" for configuration "RelWithDebInfo"
-set_property(TARGET h5import APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5import PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5import.exe"
-  )
-
-# Import target "h5import-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5import-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5import-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5import-shared.exe"
-  )
-
-# Import target "h5repack" for configuration "RelWithDebInfo"
-set_property(TARGET h5repack APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5repack PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5repack.exe"
-  )
-
-# Import target "h5repack-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5repack-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5repack-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5repack-shared.exe"
-  )
-
-# Import target "h5jam" for configuration "RelWithDebInfo"
-set_property(TARGET h5jam APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5jam PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5jam.exe"
-  )
-
-# Import target "h5unjam" for configuration "RelWithDebInfo"
-set_property(TARGET h5unjam APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5unjam PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5unjam.exe"
-  )
-
-# Import target "h5jam-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5jam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5jam-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5jam-shared.exe"
-  )
-
-# Import target "h5unjam-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5unjam-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5unjam-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5unjam-shared.exe"
-  )
-
-# Import target "h5copy" for configuration "RelWithDebInfo"
-set_property(TARGET h5copy APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5copy PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5copy.exe"
-  )
-
-# Import target "h5copy-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5copy-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5copy-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5copy-shared.exe"
-  )
-
-# Import target "h5stat" for configuration "RelWithDebInfo"
-set_property(TARGET h5stat APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5stat PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5stat.exe"
-  )
-
-# Import target "h5stat-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5stat-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5stat-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5stat-shared.exe"
-  )
-
-# Import target "h5dump" for configuration "RelWithDebInfo"
-set_property(TARGET h5dump APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5dump PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5dump.exe"
-  )
-
-# Import target "h5dump-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5dump-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5dump-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5dump-shared.exe"
-  )
-
-# Import target "h5format_convert" for configuration "RelWithDebInfo"
-set_property(TARGET h5format_convert APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5format_convert PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5format_convert.exe"
-  )
-
-# Import target "h5format_convert-shared" for configuration "RelWithDebInfo"
-set_property(TARGET h5format_convert-shared APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5format_convert-shared PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5format_convert-shared.exe"
-  )
-
-# Import target "h5perf_serial" for configuration "RelWithDebInfo"
-set_property(TARGET h5perf_serial APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
-set_target_properties(h5perf_serial PROPERTIES
-  IMPORTED_LOCATION_RELWITHDEBINFO "N:/Development/Dev_Base/hdf5-1.14.0/msvc/bin/RelWithDebInfo/h5perf_serial.exe"
   )
 
 # This file does not depend on other imported targets which have

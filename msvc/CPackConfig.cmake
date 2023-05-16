@@ -12,7 +12,7 @@
 
 set(CPACK_BUILD_SOURCE_DIRS "N:/Development/Dev_Base/hdf5-1.14.0;N:/Development/Dev_Base/hdf5-1.14.0/msvc")
 set(CPACK_CMAKE_GENERATOR "Visual Studio 16 2019")
-set(CPACK_COMPONENTS_ALL "Unspecified;configinstall;hdfdocuments;headers;hlheaders;hllibraries;hltoolsapplications;libraries;toolsapplications;toolslibraries;utilsapplications")
+set(CPACK_COMPONENTS_ALL "Unspecified;configinstall;cppheaders;cpplibraries;hdfdocuments;headers;hlcppheaders;hlcpplibraries;hlheaders;hllibraries;libraries;utilsapplications")
 set(CPACK_COMPONENT_UNSPECIFIED_HIDDEN "TRUE")
 set(CPACK_COMPONENT_UNSPECIFIED_REQUIRED "TRUE")
 set(CPACK_DEFAULT_PACKAGE_DESCRIPTION_FILE "C:/Program Files/CMake/share/cmake-3.20/Templates/CPack.GenericDescription.txt")
@@ -98,14 +98,14 @@ set(CPACK_COMPONENT_GROUP_APPLICATIONS_EXPANDED TRUE)
 
 # Configuration for component "libraries"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_LIBRARIES_DISPLAY_NAME "HDF5 Libraries")
 set(CPACK_COMPONENT_LIBRARIES_GROUP Runtime)
 set(CPACK_COMPONENT_LIBRARIES_INSTALL_TYPES Full Developer User)
 
 # Configuration for component "headers"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_HEADERS_DISPLAY_NAME "HDF5 Headers")
 set(CPACK_COMPONENT_HEADERS_GROUP Development)
 set(CPACK_COMPONENT_HEADERS_DEPENDS libraries)
@@ -113,55 +113,47 @@ set(CPACK_COMPONENT_HEADERS_INSTALL_TYPES Full Developer)
 
 # Configuration for component "hdfdocuments"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_HDFDOCUMENTS_DISPLAY_NAME "HDF5 Documents")
 set(CPACK_COMPONENT_HDFDOCUMENTS_GROUP Documents)
 set(CPACK_COMPONENT_HDFDOCUMENTS_INSTALL_TYPES Full Developer)
 
 # Configuration for component "configinstall"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_CONFIGINSTALL_DISPLAY_NAME "HDF5 CMake files")
 set(CPACK_COMPONENT_CONFIGINSTALL_GROUP Development)
 set(CPACK_COMPONENT_CONFIGINSTALL_DEPENDS libraries)
 set(CPACK_COMPONENT_CONFIGINSTALL_INSTALL_TYPES Full Developer User)
 set(CPACK_COMPONENT_CONFIGINSTALL_HIDDEN TRUE)
 
+# Configuration for component "cpplibraries"
+
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
+set(CPACK_COMPONENT_CPPLIBRARIES_DISPLAY_NAME "HDF5 C++ Libraries")
+set(CPACK_COMPONENT_CPPLIBRARIES_GROUP Runtime)
+set(CPACK_COMPONENT_CPPLIBRARIES_DEPENDS libraries)
+set(CPACK_COMPONENT_CPPLIBRARIES_INSTALL_TYPES Full Developer User)
+
+# Configuration for component "cppheaders"
+
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
+set(CPACK_COMPONENT_CPPHEADERS_DISPLAY_NAME "HDF5 C++ Headers")
+set(CPACK_COMPONENT_CPPHEADERS_GROUP Development)
+set(CPACK_COMPONENT_CPPHEADERS_DEPENDS cpplibraries)
+set(CPACK_COMPONENT_CPPHEADERS_INSTALL_TYPES Full Developer)
+
 # Configuration for component "utilsapplications"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_UTILSAPPLICATIONS_DISPLAY_NAME "HDF5 Utility Applications")
 set(CPACK_COMPONENT_UTILSAPPLICATIONS_GROUP Applications)
 set(CPACK_COMPONENT_UTILSAPPLICATIONS_DEPENDS libraries)
 set(CPACK_COMPONENT_UTILSAPPLICATIONS_INSTALL_TYPES Full Developer User)
 
-# Configuration for component "toolsapplications"
-
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
-set(CPACK_COMPONENT_TOOLSAPPLICATIONS_DISPLAY_NAME "HDF5 Tools Applications")
-set(CPACK_COMPONENT_TOOLSAPPLICATIONS_GROUP Applications)
-set(CPACK_COMPONENT_TOOLSAPPLICATIONS_DEPENDS toolslibraries)
-set(CPACK_COMPONENT_TOOLSAPPLICATIONS_INSTALL_TYPES Full Developer User)
-
-# Configuration for component "toolslibraries"
-
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
-set(CPACK_COMPONENT_TOOLSLIBRARIES_DISPLAY_NAME "HDF5 Tools Libraries")
-set(CPACK_COMPONENT_TOOLSLIBRARIES_GROUP Runtime)
-set(CPACK_COMPONENT_TOOLSLIBRARIES_DEPENDS libraries)
-set(CPACK_COMPONENT_TOOLSLIBRARIES_INSTALL_TYPES Full Developer User)
-
-# Configuration for component "toolsheaders"
-
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
-set(CPACK_COMPONENT_TOOLSHEADERS_DISPLAY_NAME "HDF5 Tools Headers")
-set(CPACK_COMPONENT_TOOLSHEADERS_GROUP Development)
-set(CPACK_COMPONENT_TOOLSHEADERS_DEPENDS toolslibraries)
-set(CPACK_COMPONENT_TOOLSHEADERS_INSTALL_TYPES Full Developer)
-
 # Configuration for component "hllibraries"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_HLLIBRARIES_DISPLAY_NAME "HDF5 HL Libraries")
 set(CPACK_COMPONENT_HLLIBRARIES_GROUP Runtime)
 set(CPACK_COMPONENT_HLLIBRARIES_DEPENDS libraries)
@@ -169,7 +161,7 @@ set(CPACK_COMPONENT_HLLIBRARIES_INSTALL_TYPES Full Developer User)
 
 # Configuration for component "hlheaders"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_HLHEADERS_DISPLAY_NAME "HDF5 HL Headers")
 set(CPACK_COMPONENT_HLHEADERS_GROUP Development)
 set(CPACK_COMPONENT_HLHEADERS_DEPENDS hllibraries)
@@ -177,8 +169,24 @@ set(CPACK_COMPONENT_HLHEADERS_INSTALL_TYPES Full Developer)
 
 # Configuration for component "hltoolsapplications"
 
-SET(CPACK_COMPONENTS_ALL Unspecified configinstall hdfdocuments headers hlheaders hllibraries hltoolsapplications libraries toolsapplications toolslibraries utilsapplications)
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
 set(CPACK_COMPONENT_HLTOOLSAPPLICATIONS_DISPLAY_NAME "HDF5 HL Tools Applications")
 set(CPACK_COMPONENT_HLTOOLSAPPLICATIONS_GROUP Applications)
 set(CPACK_COMPONENT_HLTOOLSAPPLICATIONS_DEPENDS hllibraries)
 set(CPACK_COMPONENT_HLTOOLSAPPLICATIONS_INSTALL_TYPES Full Developer User)
+
+# Configuration for component "hlcpplibraries"
+
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
+set(CPACK_COMPONENT_HLCPPLIBRARIES_DISPLAY_NAME "HDF5 HL C++ Libraries")
+set(CPACK_COMPONENT_HLCPPLIBRARIES_GROUP Runtime)
+set(CPACK_COMPONENT_HLCPPLIBRARIES_DEPENDS hllibraries)
+set(CPACK_COMPONENT_HLCPPLIBRARIES_INSTALL_TYPES Full Developer User)
+
+# Configuration for component "hlcppheaders"
+
+SET(CPACK_COMPONENTS_ALL Unspecified configinstall cppheaders cpplibraries hdfdocuments headers hlcppheaders hlcpplibraries hlheaders hllibraries libraries utilsapplications)
+set(CPACK_COMPONENT_HLCPPHEADERS_DISPLAY_NAME "HDF5 HL C++ Headers")
+set(CPACK_COMPONENT_HLCPPHEADERS_GROUP Development)
+set(CPACK_COMPONENT_HLCPPHEADERS_DEPENDS hlcpplibraries)
+set(CPACK_COMPONENT_HLCPPHEADERS_INSTALL_TYPES Full Developer)

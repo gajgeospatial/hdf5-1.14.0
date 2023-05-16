@@ -1,32 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\tools\src\h5dump\h5dump.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\tools\src\h5dump\h5dump_ddl.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_ddl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\tools\src\h5dump\h5dump_xml.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_xml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\tools\src\h5dump\h5dump.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\tools\src\h5dump\h5dump_defines.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\tools\src\h5dump\h5dump_extern.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_extern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\tools\src\h5dump\h5dump_ddl.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_ddl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\tools\src\h5dump\h5dump_xml.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\h5dump_xml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5dump\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

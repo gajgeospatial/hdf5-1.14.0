@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget hdf5-static hdf5-shared mirror_server mirror_server_stop hdf5_tools-static hdf5_tools-shared h5diff h5diff-shared h5ls h5ls-shared h5debug h5repart h5mkgrp h5clear h5delete h5debug-shared h5repart-shared h5mkgrp-shared h5clear-shared h5delete-shared h5import h5import-shared h5repack h5repack-shared h5jam h5unjam h5jam-shared h5unjam-shared h5copy h5copy-shared h5stat h5stat-shared h5dump h5dump-shared h5format_convert h5format_convert-shared h5perf_serial hdf5_hl-static hdf5_hl-shared h5watch h5watch-shared)
+foreach(_expectedTarget hdf5-static hdf5-shared mirror_server mirror_server_stop hdf5_hl-static hdf5_hl-shared hdf5_cpp-static hdf5_cpp-shared hdf5_hl_cpp-static hdf5_hl_cpp-shared)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -53,7 +53,7 @@ add_library(hdf5-static STATIC IMPORTED)
 
 set_target_properties(hdf5-static PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:shlwapi>;\$<\$<NOT:\$<PLATFORM_ID:Windows>>:>;\$<\$<BOOL:OFF>:MPI::MPI_C>"
+  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:shlwapi>;N:/Development/Dev_Base/zlib-1.2.11/vc143/x64/vs2022_Release/zlib.lib;\$<\$<NOT:\$<PLATFORM_ID:Windows>>:>;\$<\$<BOOL:OFF>:MPI::MPI_C>"
 )
 
 # Create imported target hdf5-shared
@@ -70,116 +70,6 @@ add_executable(mirror_server IMPORTED)
 
 # Create imported target mirror_server_stop
 add_executable(mirror_server_stop IMPORTED)
-
-# Create imported target hdf5_tools-static
-add_library(hdf5_tools-static STATIC IMPORTED)
-
-set_target_properties(hdf5_tools-static PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "hdf5-static;\$<LINK_ONLY:\$<\$<BOOL:OFF>:MPI::MPI_C>>"
-)
-
-# Create imported target hdf5_tools-shared
-add_library(hdf5_tools-shared SHARED IMPORTED)
-
-set_target_properties(hdf5_tools-shared PROPERTIES
-  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
-  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "hdf5-shared"
-)
-
-# Create imported target h5diff
-add_executable(h5diff IMPORTED)
-
-# Create imported target h5diff-shared
-add_executable(h5diff-shared IMPORTED)
-
-# Create imported target h5ls
-add_executable(h5ls IMPORTED)
-
-# Create imported target h5ls-shared
-add_executable(h5ls-shared IMPORTED)
-
-# Create imported target h5debug
-add_executable(h5debug IMPORTED)
-
-# Create imported target h5repart
-add_executable(h5repart IMPORTED)
-
-# Create imported target h5mkgrp
-add_executable(h5mkgrp IMPORTED)
-
-# Create imported target h5clear
-add_executable(h5clear IMPORTED)
-
-# Create imported target h5delete
-add_executable(h5delete IMPORTED)
-
-# Create imported target h5debug-shared
-add_executable(h5debug-shared IMPORTED)
-
-# Create imported target h5repart-shared
-add_executable(h5repart-shared IMPORTED)
-
-# Create imported target h5mkgrp-shared
-add_executable(h5mkgrp-shared IMPORTED)
-
-# Create imported target h5clear-shared
-add_executable(h5clear-shared IMPORTED)
-
-# Create imported target h5delete-shared
-add_executable(h5delete-shared IMPORTED)
-
-# Create imported target h5import
-add_executable(h5import IMPORTED)
-
-# Create imported target h5import-shared
-add_executable(h5import-shared IMPORTED)
-
-# Create imported target h5repack
-add_executable(h5repack IMPORTED)
-
-# Create imported target h5repack-shared
-add_executable(h5repack-shared IMPORTED)
-
-# Create imported target h5jam
-add_executable(h5jam IMPORTED)
-
-# Create imported target h5unjam
-add_executable(h5unjam IMPORTED)
-
-# Create imported target h5jam-shared
-add_executable(h5jam-shared IMPORTED)
-
-# Create imported target h5unjam-shared
-add_executable(h5unjam-shared IMPORTED)
-
-# Create imported target h5copy
-add_executable(h5copy IMPORTED)
-
-# Create imported target h5copy-shared
-add_executable(h5copy-shared IMPORTED)
-
-# Create imported target h5stat
-add_executable(h5stat IMPORTED)
-
-# Create imported target h5stat-shared
-add_executable(h5stat-shared IMPORTED)
-
-# Create imported target h5dump
-add_executable(h5dump IMPORTED)
-
-# Create imported target h5dump-shared
-add_executable(h5dump-shared IMPORTED)
-
-# Create imported target h5format_convert
-add_executable(h5format_convert IMPORTED)
-
-# Create imported target h5format_convert-shared
-add_executable(h5format_convert-shared IMPORTED)
-
-# Create imported target h5perf_serial
-add_executable(h5perf_serial IMPORTED)
 
 # Create imported target hdf5_hl-static
 add_library(hdf5_hl-static STATIC IMPORTED)
@@ -198,11 +88,39 @@ set_target_properties(hdf5_hl-shared PROPERTIES
   INTERFACE_LINK_LIBRARIES "hdf5-shared"
 )
 
-# Create imported target h5watch
-add_executable(h5watch IMPORTED)
+# Create imported target hdf5_cpp-static
+add_library(hdf5_cpp-static STATIC IMPORTED)
 
-# Create imported target h5watch-shared
-add_executable(h5watch-shared IMPORTED)
+set_target_properties(hdf5_cpp-static PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "hdf5-static"
+)
+
+# Create imported target hdf5_cpp-shared
+add_library(hdf5_cpp-shared SHARED IMPORTED)
+
+set_target_properties(hdf5_cpp-shared PROPERTIES
+  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "hdf5-shared"
+)
+
+# Create imported target hdf5_hl_cpp-static
+add_library(hdf5_hl_cpp-static STATIC IMPORTED)
+
+set_target_properties(hdf5_hl_cpp-static PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "hdf5_hl-static;hdf5-static"
+)
+
+# Create imported target hdf5_hl_cpp-shared
+add_library(hdf5_hl_cpp-shared SHARED IMPORTED)
+
+set_target_properties(hdf5_hl_cpp-shared PROPERTIES
+  INTERFACE_COMPILE_DEFINITIONS "H5_BUILT_AS_DYNAMIC_LIB"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "hdf5_hl-shared;hdf5-shared"
+)
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)
   message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")

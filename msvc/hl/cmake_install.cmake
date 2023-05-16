@@ -37,8 +37,3 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/src/cmake_install.cmake")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("N:/Development/Dev_Base/hdf5-1.14.0/msvc/hl/tools/cmake_install.cmake")
-endif()
-

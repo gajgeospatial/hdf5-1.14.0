@@ -1,77 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\tools\lib\h5diff.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5diff_array.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff_array.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5diff_attr.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff_attr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5diff_dset.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff_dset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5diff_util.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff_util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_dump.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_dump.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_filters.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_filters.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_ref.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_ref.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_str.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_str.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_type.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_type.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5tools_utils.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_utils.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\h5trav.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5trav.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tools\lib\io_timer.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\io_timer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\tools\lib\h5trav.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5trav.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools_dump.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_dump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools_error.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools_utils.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools_str.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_str.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5tools_ref.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5tools_ref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\h5diff.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\h5diff.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\tools\lib\io_timer.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\io_timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\lib\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\tools\src\h5diff\h5diff_common.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5diff\h5diff_common.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\tools\src\h5diff\h5diff_main.c">
+    <ClCompile Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5diff\h5diff_main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\tools\src\h5diff\h5diff_common.h">
+    <ClInclude Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5diff\h5diff_common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="N:\Development\Dev_Base\hdf5-1.14.0\tools\src\h5diff\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

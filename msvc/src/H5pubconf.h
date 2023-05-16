@@ -129,7 +129,7 @@
 /* #undef H5_HAVE_FEATURES_H */
 
 /* Define if support for deflate (zlib) filter is enabled */
-/* #undef H5_HAVE_FILTER_DEFLATE */
+#define H5_HAVE_FILTER_DEFLATE 1
 
 /* Define if support for szip filter is enabled */
 /* #undef H5_HAVE_FILTER_SZIP */
@@ -208,7 +208,7 @@
 #define H5_HAVE_LIBWS2_32 1
 
 /* Define to 1 if you have the `z' library (-lz). */
-/* #undef H5_HAVE_LIBZ */
+#define H5_HAVE_LIBZ 1
 
 /* Define to 1 if you have the `lseek64' function. */
 /* #undef H5_HAVE_LSEEK64 */
@@ -385,7 +385,7 @@
 #define H5_HAVE_WINDOW_PATH 1
 
 /* Define to 1 if you have the <zlib.h> header file. */
-/* #undef H5_HAVE_ZLIB_H */
+#define H5_HAVE_ZLIB_H 1
 
 /* Define to 1 if you have the `_getvideoconfig' function. */
 /* #undef H5_HAVE__GETVIDEOCONFIG */

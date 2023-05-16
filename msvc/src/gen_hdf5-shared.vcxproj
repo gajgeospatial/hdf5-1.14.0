@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
@@ -62,13 +62,25 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
@@ -87,14 +99,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(ProjectName).dir\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -104,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -114,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -124,17 +136,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
-      <HeaderFileName>%(Filename).h</HeaderFileName>
-      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
-      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
-    </Midl>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">
-    <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -144,7 +146,37 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>..\..\..\$(ZLIB_DIR);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -154,12 +186,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="..\CMakeFiles\4637283bc08b047edf425c6c910629e0\gen_SRCS.stamp1.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create H5Tinit.c</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Create H5Tinit.c</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Create H5Tinit.c</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Touch existing H5Tinit.c</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Touch existing H5Tinit.c</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Touch existing H5Tinit.c</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch gen_SRCS.stamp1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -169,8 +199,6 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch gen_SRCS.stamp1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -180,8 +208,6 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch gen_SRCS.stamp1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -190,21 +216,16 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\H5Tinit.c;%(AdditionalInputs);</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\H5Tinit.c;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\gen_SRCS.stamp1</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\gen_SRCS.stamp1</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\gen_SRCS.stamp1</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create H5Tinit.c</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Create H5Tinit.c</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Create H5Tinit.c</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Touch existing H5Tinit.c</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Touch existing H5Tinit.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
 cmake -E touch gen_SRCS.stamp1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -214,8 +235,6 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch gen_SRCS.stamp1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
@@ -224,44 +243,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch gen_SRCS.stamp1
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\gen_SRCS.stamp1</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\gen_SRCS.stamp1</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\H5Tinit.c;%(AdditionalInputs);</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\H5Tinit.c;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\gen_SRCS.stamp1</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\gen_SRCS.stamp1</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\CMakeFiles\7937871e135c23993d79191115a3e55a\shared_gen_SRCS.stamp1.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cmake -E copy_if_different H5Tinit.c shared/H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch shared/shared_gen_SRCS.stamp1
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Copy existing H5Tinit.c to shared folder</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Copy existing H5Tinit.c to shared folder</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">setlocal
 cmake -E copy_if_different H5Tinit.c shared/H5Tinit.c
 if %errorlevel% neq 0 goto :cmEnd
@@ -284,19 +277,15 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\H5Tinit.c;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\H5Tinit.c;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Copy H5Tinit.c to shared folder</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Copy existing H5Tinit.c to shared folder</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Copy existing H5Tinit.c to shared folder</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
 cmake -E copy_if_different H5Tinit.c shared/H5Tinit.c
 if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch shared/shared_gen_SRCS.stamp1
@@ -318,44 +307,19 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
-cmake -E copy_if_different H5Tinit.c shared/H5Tinit.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch shared/shared_gen_SRCS.stamp1
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\H5Tinit.c;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\H5Tinit.c;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\shared\shared_gen_SRCS.stamp1</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.\H5Tinit.c;.\gen_SRCS.stamp1;%(AdditionalInputs);</AdditionalInputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\CMakeFiles\4637283bc08b047edf425c6c910629e0\gen_SRCS.stamp2.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create H5lib_settings.c</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Create H5lib_settings.c</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Create H5lib_settings.c</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe H5lib_settings.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch gen_SRCS.stamp2
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">setlocal
 ..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe H5lib_settings.c
 if %errorlevel% neq 0 goto :cmEnd
@@ -378,19 +342,15 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\gen_SRCS.stamp2</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\gen_SRCS.stamp2</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\gen_SRCS.stamp2</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create H5lib_settings.c</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Create H5lib_settings.c</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Create H5lib_settings.c</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Create H5lib_settings.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
 ..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe H5lib_settings.c
 if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch gen_SRCS.stamp2
@@ -412,44 +372,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
-..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe H5lib_settings.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch gen_SRCS.stamp2
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\gen_SRCS.stamp2</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\gen_SRCS.stamp2</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\gen_SRCS.stamp2</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\gen_SRCS.stamp2</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\CMakeFiles\7937871e135c23993d79191115a3e55a\shared_gen_SRCS.stamp2.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copy H5lib_settings.c to shared folder</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Copy H5lib_settings.c to shared folder</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Copy H5lib_settings.c to shared folder</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-cmake -E copy_if_different H5lib_settings.c shared/H5lib_settings.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch shared/shared_gen_SRCS.stamp2
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">setlocal
 cmake -E copy_if_different H5lib_settings.c shared/H5lib_settings.c
 if %errorlevel% neq 0 goto :cmEnd
@@ -472,19 +406,15 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copy H5lib_settings.c to shared folder</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Copy H5lib_settings.c to shared folder</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Copy H5lib_settings.c to shared folder</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Copy H5lib_settings.c to shared folder</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
 cmake -E copy_if_different H5lib_settings.c shared/H5lib_settings.c
 if %errorlevel% neq 0 goto :cmEnd
 cmake -E touch shared/shared_gen_SRCS.stamp2
@@ -506,40 +436,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
-cmake -E copy_if_different H5lib_settings.c shared/H5lib_settings.c
-if %errorlevel% neq 0 goto :cmEnd
-cmake -E touch shared/shared_gen_SRCS.stamp2
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\shared\shared_gen_SRCS.stamp2</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\CMakeFiles\fa70583298697a60b1b010582e32dd6e\gen_hdf5-shared.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shared generation target files</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">Shared generation target files</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">Shared generation target files</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">setlocal
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -554,28 +462,16 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</LinkObjects>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</LinkObjects>
-      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='vs2022_Debug|x64'">false</VerifyInputsAndOutputsExist>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='vs2019_Debug|x64'">false</VerifyInputsAndOutputsExist>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shared generation target files</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Shared generation target files</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">Shared generation target files</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">Shared generation target files</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">setlocal
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -583,25 +479,14 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">setlocal
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5detect.exe;..\vc$(PlatformToolsetVersion)\$(Platform)\$(Configuration)\H5make_libsettings.exe;.\shared\shared_gen_SRCS.stamp1;.\shared\shared_gen_SRCS.stamp2;%(AdditionalInputs);</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">.\CMakeFiles\gen_hdf5-shared</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</LinkObjects>
-      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
-      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</VerifyInputsAndOutputsExist>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='vs2019_Release|x64'">false</VerifyInputsAndOutputsExist>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='vs2022_Release|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
